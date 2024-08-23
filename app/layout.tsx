@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import SideBarLinks from "./SideBarLinks";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+      <div className='h-[100vh] w-full bg-indigo-50 flex overflow-clip'>
+        
+        <div className="bg-[#44444a] flex-init">
+          <div className='w-[250px] text-white'>
+
+            <h2 className='text-xl font-bold mt-20 ps-4'>TEST FHIR</h2>
+            <SideBarLinks />
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto">
+          {children}
+        </div>
+      </div>
+      </body>
     </html>
   );
 }

@@ -1,0 +1,10 @@
+
+.patientScrollBar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.patientScrollBar::-webkit-scrollbar-thumb{
+    width: 10px;
+    background-color: #0390d1;
+    border-radius: 3px;
+}
