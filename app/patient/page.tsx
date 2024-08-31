@@ -26,7 +26,7 @@ export default function PatientTab() {
         setPatients(results);
     }
     
-    useEffect(() => { search(); }, []);
+    useEffect(() => { search(); });
 
     return (
         <div className="px-4">
