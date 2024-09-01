@@ -17,8 +17,9 @@ export default function PatientTab() {
     const search = async () => {
         setIsLoading(true);
         let results;
-        if (!searchInput || searchInput == '') 
+        if (!searchInput || searchInput == '') {
             results = await patientServices.getPatients();
+        }
         else
             results = await patientServices.searchPatients(searchInput);
 
@@ -26,7 +27,7 @@ export default function PatientTab() {
         setPatients(results);
     }
     
-    useEffect(() => { search(); });
+    useEffect(() => { search(); }, []);
 
     return (
         <div className="px-4">
@@ -70,8 +71,8 @@ export default function PatientTab() {
                                     <h2>{patientName}</h2>
                                     <div className="flex gap-x-4">
                                         <span>ID : {patient.id}</span>
-                                        <span>Age : {patient.birthDate}</span>
-                                        <span>Gender : {patient.gender}</span>
+                                        <span>DOB : {patient.birthDate || "N/A"}</span>
+                                        <span>Gender : {patient.gender || "N/A"}</span>
                                     </div>
                                 </div>
                             </div>

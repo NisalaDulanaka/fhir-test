@@ -14,15 +14,16 @@ export const getPatients = async () :Promise<R4.IPatient[]> => {
             return res.json();
         })
         .then(json => {
-            if (!json.entry) return [];
+            if (!json) return [];
 
-            return json.entry.reduce((filtered: Object[], currentEntry: any) => {
-                let result = R4.RTTI_Patient.decode(currentEntry.resource);
+            const resultsArray: R4.IPatient[] = new Array();
+            json.forEach((resource: any) => {
+                let result = R4.RTTI_Patient.decode(resource);
 
-                if (! E.isLeft(result)) filtered.push(result.right);
+                if (! E.isLeft(result)) resultsArray.push(result.right);
+            });
 
-                return filtered;
-            }, []);
+            return resultsArray;
         });
 };
 
@@ -37,14 +38,15 @@ export const searchPatients = async (query: string) :Promise<R4.IPatient[]> => {
             return res.json();
         })
         .then(json => {
-            if (!json.entry) return [];
+            if (!json) return [];
 
-            return json.entry.reduce((filtered: Object[], currentEntry: any) => {
-                let result = R4.RTTI_Patient.decode(currentEntry.resource);
+            const resultsArray: R4.IPatient[] = new Array();
+            json.forEach((resource: any) => {
+                let result = R4.RTTI_Patient.decode(resource);
 
-                if (! E.isLeft(result)) filtered.push(result.right);
+                if (! E.isLeft(result)) resultsArray.push(result.right);
+            });
 
-                return filtered;
-            }, []);
+            return resultsArray;
         });
 };
